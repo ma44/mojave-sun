@@ -51,6 +51,7 @@
 		if(C)
 			original_pilot_footstep = C.footstep_sounds //Yes, this means light_step quirk will somewhat silence power armor, go figure
 			C.footstep_sounds = 'sound/mecha/mechstep.ogg'
+			user.move_resist = INFINITY //No pulling dudes in power armor
 
 /obj/item/clothing/suit/space/hardsuit/power_armor/dropped(mob/user)
 	. = ..()
@@ -58,6 +59,7 @@
 	var/datum/component/footstep/C = user?.GetComponent(/datum/component/footstep)
 	if(C)
 		C.footstep_sounds = original_pilot_footstep
+		user.move_resist = initial(user.move_resist) //No pulling dudes in armor
 
 //No helmet toggles for now when helmet is up
 /obj/item/clothing/suit/space/hardsuit/power_armor/ToggleHelmet()
